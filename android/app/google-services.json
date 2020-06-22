@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "939919899444",
+    "firebase_url": "https://soi-koi-nae.firebaseio.com",
+    "project_id": "soi-koi-nae",
+    "storage_bucket": "soi-koi-nae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939919899444:android:b62e7c1348f89dd12c4361",
+        "android_client_info": {
+          "package_name": "com.helpkeng.soi_koi_nae_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939919899444-6a3padvbbtd1uglpgs12q49dvjdf58dm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpPo8yMhI-ASK_L8KWWWhz2sx1fBx2LdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939919899444-6a3padvbbtd1uglpgs12q49dvjdf58dm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
