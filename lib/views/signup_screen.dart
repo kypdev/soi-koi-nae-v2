@@ -12,19 +12,6 @@ class _SignupScreenState extends State<SignupScreen>
   AnimationController _loginButtonController;
   var animationStatus = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    _loginButtonController = new AnimationController(
-        duration: new Duration(milliseconds: 3000), vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _loginButtonController.dispose();
-    super.dispose();
-  }
-
   Future<Null> _playAnimation() async {
     try {
       await _loginButtonController.forward();
@@ -33,14 +20,19 @@ class _SignupScreenState extends State<SignupScreen>
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('signup'),
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0.0,
-        // ),
         body: Container(
           decoration: new BoxDecoration(
             image: signupBackgroundImage,
@@ -65,9 +57,6 @@ class _SignupScreenState extends State<SignupScreen>
                     new Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        // new Tick(image: tick),
-                        // new FormContainer(),
-                        // new SignUp(),
                         Container(
                           child: Row(
                             children: <Widget>[
@@ -93,7 +82,6 @@ class _SignupScreenState extends State<SignupScreen>
                             ],
                           ),
                         ),
-
                         FormSignup(),
                       ],
                     ),

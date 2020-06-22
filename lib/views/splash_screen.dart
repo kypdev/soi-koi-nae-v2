@@ -18,8 +18,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       auth.currentUser().then((user) {
         if (user != null) {
-          print('go home screen');
-        } else {
+          Navigator.pushReplacementNamed(context, '/home');
+          } else {
           Navigator.pushReplacementNamed(context, '/login');
         }
       });

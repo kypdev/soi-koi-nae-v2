@@ -17,14 +17,14 @@ class SignUp extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Text(
-            "Don't have an account?  ",
+            "หากคุณไม่มีบัญชีผู้ใช้?  ",
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
             softWrap: true,
             style: new TextStyle(
                 fontWeight: FontWeight.w300,
                 letterSpacing: 0.5,
-                color: Colors.white,
+                color: Colors.white.withOpacity(0.5),
                 fontSize: 14.0),
           ),
           InkWell(
@@ -32,7 +32,7 @@ class SignUp extends StatelessWidget {
               goSignupScreen(context);
             },
                       child: Text(
-              'Signup',
+              'สมัครสมาชิก',
               style: new TextStyle(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
