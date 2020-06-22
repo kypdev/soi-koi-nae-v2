@@ -2,12 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:soi_koi_nae_v2/common/logout_button.dart';
 
-class HomeScreen extends StatefulWidget {
+class UserProfile extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _UserProfileState createState() => _UserProfileState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _UserProfileState extends State<UserProfile> {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   signOut(context) {
