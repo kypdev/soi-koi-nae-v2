@@ -95,20 +95,23 @@ class _LoginScreenState extends State<LoginScreen>
                           new SignUp(),
                         ],
                       ),
-                      animationStatus == 0
-                          ? new Padding(
-                              padding: const EdgeInsets.only(bottom: 50.0),
-                              child: new InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      animationStatus = 1;
-                                    });
-                                    _playAnimation();
-                                  },
-                                  child: new SignIn()),
-                            )
-                          : new StaggerAnimation(
-                              buttonController: _loginButtonController.view),
+                      // animationStatus == 0
+                      //     ? new Padding(
+                      //         padding: const EdgeInsets.only(bottom: 50.0),
+                      //         child: new InkWell(
+                      //             onTap: () {
+                      //               if(){
+
+                      //               }
+                      //               setState(() {
+                      //                 animationStatus = 1;
+                      //               });
+                      //               _playAnimation();
+                      //             },
+                      //             child: new SignIn()),
+                      //       )
+                      //     : new StaggerAnimation(
+                      //         buttonController: _loginButtonController.view),
                     ],
                   ),
                 ],
