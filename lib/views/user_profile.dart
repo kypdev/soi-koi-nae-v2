@@ -25,7 +25,7 @@ class _UserProfileState extends State<UserProfile> {
           ),
           body: Column(
             children: <Widget>[
-              Image.network('https://firebasestorage.googleapis.com/v0/b/soi-koi-nae.appspot.com/o/%E0%B8%B5userprofile%2Fimage_picker1275587429094664913.jpg?alt=media&token=b50b716f-bee3-4422-b9a2-2e5b84437b6e',),
+              // Image.network('',),
               InkWell(
                 onTap: () => signOut(context),
                 child: LogoutButton(),

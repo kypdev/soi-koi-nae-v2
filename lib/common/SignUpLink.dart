@@ -10,7 +10,7 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return (new FlatButton(
       padding: const EdgeInsets.only(
-        top: 160.0,
+        top: 10.0,
       ),
       onPressed: null,
       child: Row(

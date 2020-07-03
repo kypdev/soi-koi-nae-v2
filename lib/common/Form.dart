@@ -98,9 +98,11 @@ class _FormContainerState extends State<FormContainer>
                   ),
                   animationStatus == 0
                       ? new Padding(
-                          padding: const EdgeInsets.only(bottom: 50.0),
+                          padding: const EdgeInsets.only(bottom: 25.0, top: 25.0),
                           child: new InkWell(
-                              onTap: () => startSignin(), child: SignIn()),
+                            onTap: () => startSignin(),
+                            child: SignIn(),
+                          ),
                         )
                       : new StaggerAnimation(
                           buttonController: _loginButtonController.view),
