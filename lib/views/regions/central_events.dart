@@ -13,10 +13,10 @@ class _CentralEventsState extends State<CentralEvents> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0XFFC9CCD1),
-        appBar: cusAppbar(
-          context: context,
-          title: 'ภาคกลาง',
-        ),
+        // appBar: cusAppbar(
+        //   context: context,
+        //   title: 'ภาคกลาง',
+        // ),
         body: Column(
           children: <Widget>[
             InkWell(

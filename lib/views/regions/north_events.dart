@@ -11,10 +11,10 @@ class _NorthEventsState extends State<NorthEvents> {
   Widget build(BuildContext context) {
     return SafeArea(
           child: Scaffold(
-        appBar: cusAppbar(
-          context: context,
-          title: 'ภาคเหนือ',
-        ),
+        // appBar: cusAppbar(
+        //   context: context,
+        //   title: 'ภาคเหนือ',
+        // ),
         body: Column(
           children: <Widget>[],
         ),

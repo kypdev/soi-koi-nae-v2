@@ -16,6 +16,14 @@ import 'package:soi_koi_nae_v2/views/months/may_event.dart';
 import 'package:soi_koi_nae_v2/views/months/nov_event.dart';
 import 'package:soi_koi_nae_v2/views/months/oct_event.dart';
 import 'package:soi_koi_nae_v2/views/months/sep_event.dart';
+import 'package:soi_koi_nae_v2/views/regions/central_events.dart';
+import 'package:soi_koi_nae_v2/views/regions/eastern_events.dart';
+import 'package:soi_koi_nae_v2/views/regions/north_events.dart';
+import 'package:soi_koi_nae_v2/views/regions/northeast_events.dart';
+import 'package:soi_koi_nae_v2/views/regions/southern_events.dart';
+import 'package:soi_koi_nae_v2/views/regions/western_events.dart';
+
+import 'new_event.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -24,19 +32,29 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
+  // final List<Tab> tabs = <Tab>[
+  //   new Tab(text: "มกราคม"),
+  //   new Tab(text: "กุมภาพันธ์"),
+  //   new Tab(text: "มีนาคม"),
+  //   new Tab(text: "เมษายน"),
+  //   new Tab(text: "พฤษภาคม"),
+  //   new Tab(text: "มิถุนายน"),
+  //   new Tab(text: "กรกฎาคม"),
+  //   new Tab(text: "สิงหาคม"),
+  //   new Tab(text: "กันยายน"),
+  //   new Tab(text: "ตุลาคม"),
+  //   new Tab(text: "พฤศจิกายน"),
+  //   new Tab(text: "ธันวาคม"),
+  // ];
+
   final List<Tab> tabs = <Tab>[
-    new Tab(text: "มกราคม"),
-    new Tab(text: "กุมภาพันธ์"),
-    new Tab(text: "มีนาคม"),
-    new Tab(text: "เมษายน"),
-    new Tab(text: "พฤษภาคม"),
-    new Tab(text: "มิถุนายน"),
-    new Tab(text: "กรกฎาคม"),
-    new Tab(text: "สิงหาคม"),
-    new Tab(text: "กันยายน"),
-    new Tab(text: "ตุลาคม"),
-    new Tab(text: "พฤศจิกายน"),
-    new Tab(text: "ธันวาคม"),
+    new Tab(text: "งานที่ใกล้ถึง"),
+    new Tab(text: "ภาคเหนือ"),
+    new Tab(text: "ภาคใต้"),
+    new Tab(text: "ภาคกลาง"),
+    new Tab(text: "ภาคตะวันออก"),
+    new Tab(text: "ภาคตะวันตก"),
+    new Tab(text: "ภาคอีสาน")
   ];
 
   TabController _tabController;
@@ -82,7 +100,6 @@ class _MainPageState extends State<MainPage>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-
                 Expanded(child: MyDropDownButton()),
                 // IconButton(
                 //   icon: CircleAvatar(
@@ -91,38 +108,37 @@ class _MainPageState extends State<MainPage>
                 //   onPressed: () => showProfile(),
                 // ),
                 InkWell(
-                    onTap: () => showProfile(),
-                    child: StreamBuilder(
-                      stream: Firestore.instance
-                          .collection('users')
-                          .document(userID)
-                          .snapshots(),
-                      builder: (context, sn) {
-                        if (!sn.hasData) {
-                          return Text('');
-                        }
+                  onTap: () => showProfile(),
+                  child: StreamBuilder(
+                    stream: Firestore.instance
+                        .collection('users')
+                        .document(userID)
+                        .snapshots(),
+                    builder: (context, sn) {
+                      if (!sn.hasData) {
+                        return Text('');
+                      }
 
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              CircleAvatar(
-                backgroundColor: Colors.blue,
-                radius: 23.0,
-                child: CircleAvatar(
-                  radius: 20.0,
-                  backgroundColor: Color(0XFFFFFFFF),
-                  backgroundImage:
-                      NetworkImage(sn.data['imgpro']),
-                ),
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundColor: Colors.blue,
+                              radius: 23.0,
+                              child: CircleAvatar(
+                                radius: 20.0,
+                                backgroundColor: Color(0XFFFFFFFF),
+                                backgroundImage:
+                                    NetworkImage(sn.data['imgpro']),
                               ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
-              
+                ),
               ],
             ),
           ),
@@ -141,24 +157,37 @@ class _MainPageState extends State<MainPage>
             controller: _tabController,
           ),
         ),
-        
+
         body: TabBarView(
           controller: _tabController,
           children: <Widget>[
-            JanEvents(),
-            FebEvents(),
-            MarchEvents(),
-            AprEvents(),
-            MayEvents(),
-            JuneEvents(),
-            JulyEvents(),
-            AugEvents(),
-            SepEvents(),
-            OctEvents(),
-            NovEvents(),
-            DecEvents()
+            NewEvent(),
+            NorthEvents(),
+            SouthernEvents(),
+            CentralEvents(),
+            EasternEvents(),
+            WesternEvents(),
+            NortheastEvents(),
           ],
         ),
+
+        // body: TabBarView(
+        //   controller: _tabController,
+        //   children: <Widget>[
+        //     JanEvents(),
+        //     FebEvents(),
+        //     MarchEvents(),
+        //     AprEvents(),
+        //     MayEvents(),
+        //     JuneEvents(),
+        //     JulyEvents(),
+        //     AugEvents(),
+        //     SepEvents(),
+        //     OctEvents(),
+        //     NovEvents(),
+        //     DecEvents()
+        //   ],
+        // ),
       ),
     );
   }
