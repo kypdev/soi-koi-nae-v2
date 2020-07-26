@@ -83,7 +83,7 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
           value: 4,
         ),
         DropdownMenuItem(
-          child: Text("ภาคตะวันออกเฉียงเหนือ"),
+          child: Text("ภาคอีสาน"),
           value: 5,
         ),
       ],

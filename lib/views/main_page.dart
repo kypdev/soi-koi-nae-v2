@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:soi_koi_nae_v2/common/featuredcontainer.dart';
 import 'package:soi_koi_nae_v2/common/global.dart';
 import 'package:soi_koi_nae_v2/common/mydropdownbutton.dart';
-import 'package:soi_koi_nae_v2/common/mymenu.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:soi_koi_nae_v2/views/months/apr_event.dart';
 import 'package:soi_koi_nae_v2/views/months/aug_event.dart';
@@ -80,48 +78,51 @@ class _MainPageState extends State<MainPage>
           backgroundColor: Color(0XFFF2F3F8),
           // title: Text('Bubble Tab Indicator'),
           title: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                MyDropDownButton(),
+
+                Expanded(child: MyDropDownButton()),
                 // IconButton(
                 //   icon: CircleAvatar(
                 //     backgroundImage: NetworkImage(profilePicture),
                 //   ),
                 //   onPressed: () => showProfile(),
                 // ),
-                StreamBuilder(
-          stream: Firestore.instance
-              .collection('users')
-              .document(userID)
-              .snapshots(),
-          builder: (context, sn) {
-            if (!sn.hasData) {
-              return Text('Loading data Please wait...');
-            }
+                InkWell(
+                    onTap: () => showProfile(),
+                    child: StreamBuilder(
+                      stream: Firestore.instance
+                          .collection('users')
+                          .document(userID)
+                          .snapshots(),
+                      builder: (context, sn) {
+                        if (!sn.hasData) {
+                          return Text('');
+                        }
 
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      radius: 75.0,
-                      child: CircleAvatar(
-                        radius: 70.0,
-                        backgroundColor: Color(0XFFFFFFFF),
-                        backgroundImage: NetworkImage(sn.data['imgpro']),
-                      ),
-                    ),
-                  ],
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              CircleAvatar(
+                backgroundColor: Colors.blue,
+                radius: 23.0,
+                child: CircleAvatar(
+                  radius: 20.0,
+                  backgroundColor: Color(0XFFFFFFFF),
+                  backgroundImage:
+                      NetworkImage(sn.data['imgpro']),
                 ),
-              ),
-            );
-          },
-        ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+              
               ],
             ),
           ),
@@ -140,6 +141,7 @@ class _MainPageState extends State<MainPage>
             controller: _tabController,
           ),
         ),
+        
         body: TabBarView(
           controller: _tabController,
           children: <Widget>[
@@ -155,7 +157,6 @@ class _MainPageState extends State<MainPage>
             OctEvents(),
             NovEvents(),
             DecEvents()
-            
           ],
         ),
       ),
