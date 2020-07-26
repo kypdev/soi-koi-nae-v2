@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soi_koi_nae_v2/common/cus_appbar.dart';
 
 class WesternEvents extends StatefulWidget {
   @override

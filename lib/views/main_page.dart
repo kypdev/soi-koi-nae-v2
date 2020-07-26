@@ -2,20 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:soi_koi_nae_v2/common/global.dart';
-import 'package:soi_koi_nae_v2/common/mydropdownbutton.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
-import 'package:soi_koi_nae_v2/views/months/apr_event.dart';
-import 'package:soi_koi_nae_v2/views/months/aug_event.dart';
-import 'package:soi_koi_nae_v2/views/months/dec_event.dart';
-import 'package:soi_koi_nae_v2/views/months/feb_event.dart';
-import 'package:soi_koi_nae_v2/views/months/jan_event.dart';
-import 'package:soi_koi_nae_v2/views/months/july_event.dart';
-import 'package:soi_koi_nae_v2/views/months/june_event.dart';
-import 'package:soi_koi_nae_v2/views/months/march_event.dart';
-import 'package:soi_koi_nae_v2/views/months/may_event.dart';
-import 'package:soi_koi_nae_v2/views/months/nov_event.dart';
-import 'package:soi_koi_nae_v2/views/months/oct_event.dart';
-import 'package:soi_koi_nae_v2/views/months/sep_event.dart';
 import 'package:soi_koi_nae_v2/views/regions/central_events.dart';
 import 'package:soi_koi_nae_v2/views/regions/eastern_events.dart';
 import 'package:soi_koi_nae_v2/views/regions/north_events.dart';
@@ -94,52 +81,36 @@ class _MainPageState extends State<MainPage>
         backgroundColor: grey,
         appBar: new AppBar(
           backgroundColor: Color(0XFFF2F3F8),
-          // title: Text('Bubble Tab Indicator'),
-          title: Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Expanded(child: MyDropDownButton()),
-                // IconButton(
-                //   icon: CircleAvatar(
-                //     backgroundImage: NetworkImage(profilePicture),
-                //   ),
-                //   onPressed: () => showProfile(),
-                // ),
-                InkWell(
-                  onTap: () => showProfile(),
-                  child: StreamBuilder(
-                    stream: Firestore.instance
-                        .collection('users')
-                        .document(userID)
-                        .snapshots(),
-                    builder: (context, sn) {
-                      if (!sn.hasData) {
-                        return Text('');
-                      }
+          title: InkWell(
+            onTap: () => showProfile(),
+            child: StreamBuilder(
+              stream: Firestore.instance
+                  .collection('users')
+                  .document(userID)
+                  .snapshots(),
+              builder: (context, sn) {
+                if (!sn.hasData) {
+                  return Text('');
+                }
 
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            CircleAvatar(
-                              backgroundColor: Colors.blue,
-                              radius: 23.0,
-                              child: CircleAvatar(
-                                radius: 20.0,
-                                backgroundColor: Color(0XFFFFFFFF),
-                                backgroundImage:
-                                    NetworkImage(sn.data['imgpro']),
-                              ),
-                            ),
-                          ],
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(),
+                    CircleAvatar(
+                        backgroundColor: Colors.blue,
+                        radius: 23.0,
+                        child: CircleAvatar(
+                          radius: 20.0,
+                          backgroundColor: Color(0XFFFFFFFF),
+                          backgroundImage:
+                              NetworkImage(sn.data['imgpro']),
                         ),
-                      );
-                    },
-                  ),
-                ),
-              ],
+                      ),
+                  ],
+                );
+              },
             ),
           ),
           elevation: 0,

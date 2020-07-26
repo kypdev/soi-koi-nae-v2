@@ -83,7 +83,7 @@ class _FormSignupState extends State<FormSignup> {
                     .setData({
                   'firstname': fname,
                   'lastname': lname,
-                  'email': fname,
+                  'email': email,
                   'uid': currentUser.user.uid
                 }).whenComplete(() {
                   uploadImage(context);

@@ -28,12 +28,12 @@ class _LoginScreenState extends State<LoginScreen>
     super.dispose();
   }
 
-  Future<Null> _playAnimation() async {
-    try {
-      await _loginButtonController.forward();
-      await _loginButtonController.reverse();
-    } on TickerCanceled {}
-  }
+  // Future<Null> _playAnimation() async {
+  //   try {
+  //     await _loginButtonController.forward();
+  //     await _loginButtonController.reverse();
+  //   } on TickerCanceled {}
+  // }
 
   Future<bool> _onWillPop() {
     return showDialog(
