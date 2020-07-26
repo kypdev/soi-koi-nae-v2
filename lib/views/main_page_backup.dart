@@ -39,7 +39,24 @@ class _MainPageState extends State<MainPage> {
                     ],
                   ),
                 ),
-                
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                //   child: TextField(
+                //     maxLines: 1,
+                //     decoration: InputDecoration(
+                //       hintText: "Search...",
+                //       prefixIcon: Icon(
+                //         Icons.search,
+                //         color: darkGrey,
+                //       ),
+                //       fillColor: Color(0xffe6e7eb),
+                //       filled: true,
+                //       border: OutlineInputBorder(
+                //           borderRadius: BorderRadius.circular(15.0),
+                //           borderSide: BorderSide.none),
+                //     ),
+                //   ),
+                // ),
                 MyMenu(),
                 FeaturedContainer(),
                 Padding(
