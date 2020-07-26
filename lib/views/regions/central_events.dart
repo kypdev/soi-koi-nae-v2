@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:soi_koi_nae_v2/views/regions/event_detail.dart';
+import 'package:soi_koi_nae_v2/common/event_item.dart';
+import 'event_details.dart';
 
 class CentralEvents extends StatefulWidget {
   @override
@@ -16,75 +18,68 @@ class _CentralEventsState extends State<CentralEvents> {
         //   context: context,
         //   title: 'ภาคกลาง',
         // ),
-        body: Column(
-          children: <Widget>[
-            SizedBox(height: 12.0),
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => EventDetail()));
-              },
-              child: Container(
-                height: 230.0,
-                // margin: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 7, color: Colors.grey, offset: Offset(0, 5))
-                  ],
+      body: StreamBuilder<QuerySnapshot>(
+          stream: Firestore.instance.collection('central').snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text(snapshot.error);
+            } else {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return Text('load');
+                case ConnectionState.active:
+                  return ListView(
+                    children:
+                        snapshot.data.documents.map((DocumentSnapshot docs) {
+                      return InkWell(
+                        onTap: () {
+                          // print(docs['name']);
 
-                  // borderRadius: BorderRadius.circular(15)
-                ),
-                child: ClipRRect(
-                  // borderRadius: BorderRadius.circular(15.0),
-                  child: Container(
-                    alignment: Alignment.bottomLeft,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          colorFilter: new ColorFilter.mode(
-                              Colors.grey.withOpacity(.3), BlendMode.srcOver),
-                          image: NetworkImage(
-                              'https://www.sansiri.com/uploads/news/2018/09/27/650_dc983cd7-dba1-4bc1-b539-30093e8000a4.jpg'),
-                          fit: BoxFit.cover),
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.all(15.0),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [Colors.transparent, Colors.black],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EventDetails(
+                                        title: docs['name'],
+                                        img: docs['img'],
+                                        content: docs['history'],
+                                      )));
+                        },
+                        child: EventItem(
+                          img: docs['img'],
+                          title: docs['name'],
+                          date: docs['date'],
                         ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text(
-                            "AAAAAAAA",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline
-                                .apply(color: Colors.white),
-                          ),
-                          SizedBox(height: 9),
-                          Text(
-                            "19/05/2020",
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle
-                                .apply(color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                      );
+                    }).toList(),
+                  );
+
+                case ConnectionState.done:
+                  return Text('done');
+                case ConnectionState.none:
+                  return Text('none');
+              }
+            }
+
+            return Container(
+              height: MediaQuery.of(context).size.height,
+              child: ListView(
+                children: snapshot.data.documents.map((DocumentSnapshot docs) {
+                  return EventItem(
+                    img: docs['img'],
+                    title: docs['name'],
+                    date: docs['date'],
+                  );
+                }).toList(),
               ),
-            ),
-          ],
+            );
+          },
         ),
+      
+      
+     
+     
+     
       ),
     );
   }
