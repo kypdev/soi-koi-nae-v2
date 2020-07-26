@@ -3,15 +3,58 @@ import 'package:soi_koi_nae_v2/common/featuredcontainer.dart';
 import 'package:soi_koi_nae_v2/common/global.dart';
 import 'package:soi_koi_nae_v2/common/mydropdownbutton.dart';
 import 'package:soi_koi_nae_v2/common/mymenu.dart';
+import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+import 'package:soi_koi_nae_v2/views/months/apr_event.dart';
+import 'package:soi_koi_nae_v2/views/months/aug_event.dart';
+import 'package:soi_koi_nae_v2/views/months/dec_event.dart';
+import 'package:soi_koi_nae_v2/views/months/feb_event.dart';
+import 'package:soi_koi_nae_v2/views/months/jan_event.dart';
+import 'package:soi_koi_nae_v2/views/months/july_event.dart';
+import 'package:soi_koi_nae_v2/views/months/june_event.dart';
+import 'package:soi_koi_nae_v2/views/months/march_event.dart';
+import 'package:soi_koi_nae_v2/views/months/may_event.dart';
+import 'package:soi_koi_nae_v2/views/months/nov_event.dart';
+import 'package:soi_koi_nae_v2/views/months/oct_event.dart';
+import 'package:soi_koi_nae_v2/views/months/sep_event.dart';
 
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage>
+    with SingleTickerProviderStateMixin {
+  final List<Tab> tabs = <Tab>[
+    new Tab(text: "มกราคม"),
+    new Tab(text: "กุมภาพันธ์"),
+    new Tab(text: "มีนาคม"),
+    new Tab(text: "เมษายน"),
+    new Tab(text: "พฤษภาคม"),
+    new Tab(text: "มิถุนายน"),
+    new Tab(text: "กรกฎาคม"),
+    new Tab(text: "สิงหาคม"),
+    new Tab(text: "กันยายน"),
+    new Tab(text: "ตุลาคม"),
+    new Tab(text: "พฤศจิกายน"),
+    new Tab(text: "ธันวาคม"),
+  ];
+
+  TabController _tabController;
+
   showProfile() {
     Navigator.pushNamed(context, '/profile');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = new TabController(vsync: this, length: tabs.length);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
   }
 
   @override
@@ -19,110 +62,56 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: grey,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        appBar: new AppBar(
+          backgroundColor: Color(0XFFF2F3F8),
+          // title: Text('Bubble Tab Indicator'),
+          title: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      MyDropDownButton(),
-                      IconButton(
-                        icon: CircleAvatar(
-                          backgroundImage: NetworkImage(profilePicture),
-                        ),
-                        onPressed: () => showProfile(),
-                      ),
-                    ],
+                MyDropDownButton(),
+                IconButton(
+                  icon: CircleAvatar(
+                    backgroundImage: NetworkImage(profilePicture),
                   ),
+                  onPressed: () => showProfile(),
                 ),
-                
-                MyMenu(),
-                FeaturedContainer(),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    "Your Current Location",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                IgnorePointer(
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 15,
-                      crossAxisSpacing: 15,
-                      shrinkWrap: true,
-                      children: <Widget>[
-                        // ! Map
-                        // MyMap(),
-                        Container(
-                          padding: const EdgeInsets.all(15.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.0),
-                              color: Colors.blue..withOpacity(.4)),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: Container(
-                                    padding: EdgeInsets.all(15.0),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      gradient: RadialGradient(
-                                        colors: [
-                                          Colors.white60,
-                                          Colors.white30,
-                                          Colors.blueAccent,
-                                        ],
-                                      ),
-                                    ),
-                                    child: Icon(
-                                      Icons.brightness_5,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                Spacer(),
-                                Text(
-                                  "31 °",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .display1
-                                      .apply(
-                                          color: Colors.white,
-                                          fontWeightDelta: 2),
-                                ),
-                                Text(
-                                  "Sydney",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline
-                                      .apply(
-                                          color: Colors.white,
-                                          fontWeightDelta: 2),
-                                )
-                              ],
-                            ),
-                        ),
-                        PlaceContainer(
-                            img:
-                                "https://cdn.pixabay.com/photo/2015/03/26/09/48/chicago-690364_960_720.jpg"),
-                        PlaceContainer(
-                            img:
-                                'https://cdn.pixabay.com/photo/2015/11/27/20/28/florence-1066314_960_720.jpg'),
-                      ],
-                    ),
-                  ),
-                )
               ],
             ),
           ),
+          elevation: 0,
+          bottom: new TabBar(
+            isScrollable: true,
+            unselectedLabelColor: Colors.grey,
+            labelColor: Colors.black,
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicator: new BubbleTabIndicator(
+              indicatorHeight: 30.0,
+              indicatorColor: Colors.white,
+              tabBarIndicatorSize: TabBarIndicatorSize.tab,
+            ),
+            tabs: tabs,
+            controller: _tabController,
+          ),
+        ),
+        body: TabBarView(
+          controller: _tabController,
+          children: <Widget>[
+            JanEvents(),
+            FebEvents(),
+            MarchEvents(),
+            AprEvents(),
+            MayEvents(),
+            JuneEvents(),
+            JulyEvents(),
+            AugEvents(),
+            SepEvents(),
+            OctEvents(),
+            NovEvents(),
+            DecEvents()
+            
+          ],
         ),
       ),
     );

@@ -21,7 +21,13 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
   Widget build(BuildContext context) {
     return DropdownButton(
       value: _active,
-      style: Theme.of(context).textTheme.headline,
+      style: TextStyle(
+        fontSize: 22.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+        fontFamily: 'Kanit',
+      ),
+
       onChanged: (i) {
         setState(() {
           _active = i;
@@ -29,22 +35,28 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
 
         switch (i) {
           case 0:
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NorthEvents()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NorthEvents()));
             break;
           case 1:
-            Navigator.push(context, MaterialPageRoute(builder: (context) => SouthernEvents() ));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SouthernEvents()));
             break;
           case 2:
-            Navigator.push(context, MaterialPageRoute(builder: (context) => CentralEvents()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => CentralEvents()));
             break;
           case 3:
-            Navigator.push(context, MaterialPageRoute(builder: (context) => EasternEvents()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => EasternEvents()));
             break;
           case 4:
-            Navigator.push(context, MaterialPageRoute(builder: (context) => WesternEvents()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => WesternEvents()));
             break;
           case 5:
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NortheastEvents()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NortheastEvents()));
             break;
         }
       },

@@ -16,6 +16,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: 'Kanit',
+        textTheme: TextTheme(
+          headline: TextStyle(
+            fontSize: 24.0,
+            letterSpacing: 0.0,
+          ),
+        ),
       ),
       initialRoute: '/',
       routes: {
