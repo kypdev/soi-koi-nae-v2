@@ -20,18 +20,19 @@ class _UserProfileState extends State<UserProfile> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: Text('home screen'),
-          ),
-          body: Column(
-            children: <Widget>[
-              // Image.network('',),
-              InkWell(
-                onTap: () => signOut(context),
-                child: LogoutButton(),
-              ),
-            ],
-          )),
+        appBar: AppBar(
+          title: Text('home screen'),
+        ),
+        body: Column(
+          children: <Widget>[
+            // Image.network('',),
+            InkWell(
+              onTap: () => signOut(context),
+              child: LogoutButton(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

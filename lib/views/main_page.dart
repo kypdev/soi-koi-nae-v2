@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:soi_koi_nae_v2/common/featuredcontainer.dart';
 import 'package:soi_koi_nae_v2/common/global.dart';
@@ -45,10 +47,22 @@ class _MainPageState extends State<MainPage>
     Navigator.pushNamed(context, '/profile');
   }
 
+  String userID;
+  inputData() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid.toString();
+    print(uid);
+    setState(() {
+      userID = uid.toString();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     _tabController = new TabController(vsync: this, length: tabs.length);
+    inputData();
   }
 
   @override
@@ -71,12 +85,43 @@ class _MainPageState extends State<MainPage>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 MyDropDownButton(),
-                IconButton(
-                  icon: CircleAvatar(
-                    backgroundImage: NetworkImage(profilePicture),
-                  ),
-                  onPressed: () => showProfile(),
+                // IconButton(
+                //   icon: CircleAvatar(
+                //     backgroundImage: NetworkImage(profilePicture),
+                //   ),
+                //   onPressed: () => showProfile(),
+                // ),
+                StreamBuilder(
+          stream: Firestore.instance
+              .collection('users')
+              .document(userID)
+              .snapshots(),
+          builder: (context, sn) {
+            if (!sn.hasData) {
+              return Text('Loading data Please wait...');
+            }
+
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundColor: Colors.blue,
+                      radius: 75.0,
+                      child: CircleAvatar(
+                        radius: 70.0,
+                        backgroundColor: Color(0XFFFFFFFF),
+                        backgroundImage: NetworkImage(sn.data['imgpro']),
+                      ),
+                    ),
+                  ],
                 ),
+              ),
+            );
+          },
+        ),
               ],
             ),
           ),
