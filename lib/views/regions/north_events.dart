@@ -28,17 +28,17 @@ class _NorthEventsState extends State<NorthEvents> {
                   return Text('load');
                 case ConnectionState.active:
                   return InkWell(
-                    onTap: (){
+                    onTap: () {
                       print('views');
                     },
-                                      child: ListView(
+                    child: ListView(
                       children:
                           snapshot.data.documents.map((DocumentSnapshot docs) {
                         return EventItem(
-                      img: docs['img'],
-                      title: docs['name'],
-                      date: docs['date'],
-                    );
+                          img: docs['img'],
+                          title: docs['name'],
+                          date: docs['date'],
+                        );
                       }).toList(),
                     ),
                   );
