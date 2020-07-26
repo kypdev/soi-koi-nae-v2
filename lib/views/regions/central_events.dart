@@ -19,59 +19,10 @@ class _CentralEventsState extends State<CentralEvents> {
         // ),
         body: Column(
           children: <Widget>[
-            InkWell(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => EventDetail()));
-              },
-                            child: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Container(
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 16.0, bottom: 16.0, left: 20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Event AAA',
-                              style: TextStyle(
-                                fontSize: 22.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '19/08/2020',
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 200.0,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                'https://www.sansiri.com/uploads/news/2018/09/27/650_dc983cd7-dba1-4bc1-b539-30093e8000a4.jpg'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            
          
 
-         SizedBox(height: 30.0),
+         SizedBox(height: 12.0),
 
 
           Container(
