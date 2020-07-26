@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soi_koi_nae_v2/common/event_item.dart';
+import 'package:soi_koi_nae_v2/views/regions/event_details.dart';
 
 class NorthEvents extends StatefulWidget {
   @override
@@ -27,20 +28,29 @@ class _NorthEventsState extends State<NorthEvents> {
                 case ConnectionState.waiting:
                   return Text('load');
                 case ConnectionState.active:
-                  return InkWell(
-                    onTap: () {
-                      print('views');
-                    },
-                    child: ListView(
-                      children:
-                          snapshot.data.documents.map((DocumentSnapshot docs) {
-                        return EventItem(
+                  return ListView(
+                    children:
+                        snapshot.data.documents.map((DocumentSnapshot docs) {
+                      return InkWell(
+                        onTap: () {
+                          // print(docs['name']);
+
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EventDetails(
+                                        title: docs['name'],
+                                        img: docs['img'],
+                                        content: docs['history'],
+                                      )));
+                        },
+                        child: EventItem(
                           img: docs['img'],
                           title: docs['name'],
                           date: docs['date'],
-                        );
-                      }).toList(),
-                    ),
+                        ),
+                      );
+                    }).toList(),
                   );
 
                 case ConnectionState.done:
