@@ -53,7 +53,6 @@ class _FormSignupState extends State<FormSignup> {
           .then((val) {
         print('update image profile success');
         // Navigator.pushReplacementNamed(context, '/home');
-        
       }).catchError((e) {
         print('upload error ' + e);
       });
@@ -90,7 +89,7 @@ class _FormSignupState extends State<FormSignup> {
                   uploadImage(context);
                   print('signupsuccess');
                   Navigator.pushReplacementNamed(context, '/home');
-                } ));
+                }));
       }
     }
   }

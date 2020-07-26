@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter/services.dart';
 import 'package:soi_koi_nae_v2/common/Form.dart';
-import 'package:soi_koi_nae_v2/common/SignInButton.dart';
 import 'package:soi_koi_nae_v2/common/SignUpLink.dart';
 import 'package:soi_koi_nae_v2/common/WhiteTick.dart';
-import 'package:soi_koi_nae_v2/common/loginAnimation.dart';
 import 'package:soi_koi_nae_v2/common/styles.dart';
 
 class LoginScreen extends StatefulWidget {

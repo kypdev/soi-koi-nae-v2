@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:soi_koi_nae_v2/common/featuredcontainer.dart';
 import 'package:soi_koi_nae_v2/common/global.dart';
 import 'package:soi_koi_nae_v2/common/mydropdownbutton.dart';
-import 'package:soi_koi_nae_v2/common/mymap.dart';
 import 'package:soi_koi_nae_v2/common/mymenu.dart';
 
 class MainPage extends StatefulWidget {
@@ -40,24 +39,24 @@ class _MainPageState extends State<MainPage> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: TextField(
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      hintText: "Search...",
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: darkGrey,
-                      ),
-                      fillColor: Color(0xffe6e7eb),
-                      filled: true,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                          borderSide: BorderSide.none),
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                //   child: TextField(
+                //     maxLines: 1,
+                //     decoration: InputDecoration(
+                //       hintText: "Search...",
+                //       prefixIcon: Icon(
+                //         Icons.search,
+                //         color: darkGrey,
+                //       ),
+                //       fillColor: Color(0xffe6e7eb),
+                //       filled: true,
+                //       border: OutlineInputBorder(
+                //           borderRadius: BorderRadius.circular(15.0),
+                //           borderSide: BorderSide.none),
+                //     ),
+                //   ),
+                // ),
                 MyMenu(),
                 FeaturedContainer(),
                 Padding(
