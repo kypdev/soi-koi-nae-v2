@@ -18,7 +18,7 @@ class _CentralEventsState extends State<CentralEvents> {
         //   context: context,
         //   title: 'ภาคกลาง',
         // ),
-      body: StreamBuilder<QuerySnapshot>(
+        body: StreamBuilder<QuerySnapshot>(
           stream: Firestore.instance.collection('central').snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -75,11 +75,6 @@ class _CentralEventsState extends State<CentralEvents> {
             );
           },
         ),
-      
-      
-     
-     
-     
       ),
     );
   }

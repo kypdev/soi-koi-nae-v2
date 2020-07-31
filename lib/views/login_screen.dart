@@ -46,8 +46,8 @@ class _LoginScreenState extends State<LoginScreen>
                 child: new Text('No'),
               ),
               new FlatButton(
-                onPressed: () =>
-                    Navigator.pushReplacementNamed(context, "/home"),
+                onPressed: () => Navigator.of(context).pop(true),
+                // Navigator.pushReplacementNamed(context, "/home"),
                 child: new Text('Yes'),
               ),
             ],
